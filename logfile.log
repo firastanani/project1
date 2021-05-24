@@ -1,0 +1,105 @@
+{"message":"Error: nothing","level":"error"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Error: hello","level":"error"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Error: hello","level":"error"}
+{"message":"Error: hello\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\index.js:12:7)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)\n    at internal/main/run_main_module.js:17:47","level":"error"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"SyntaxError: await is only valid in async function","level":"error"}
+{"message":"C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\models\\user.js:63\n  await user.save();\n  ^^^^^\n\nSyntaxError: await is only valid in async function\n    at wrapSafe (internal/modules/cjs/loader.js:979:16)\n    at Module._compile (internal/modules/cjs/loader.js:1027:27)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\graphql\\resolvers\\Mutation.js:4:28)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)","level":"error"}
+{"message":"ReferenceError: userSchema is not defined","level":"error"}
+{"message":"ReferenceError: userSchema is not defined\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\models\\user.js:60:1)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\graphql\\resolvers\\Mutation.js:4:28)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:10:26)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)","level":"error"}
+{"message":"ReferenceError: schemaUser is not defined","level":"error"}
+{"message":"ReferenceError: schemaUser is not defined\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\models\\user.js:70:1)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\graphql\\resolvers\\Mutation.js:4:28)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:10:26)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)","level":"error"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
