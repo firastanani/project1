@@ -9,8 +9,9 @@ const _ = require('lodash');
 
 const MutationResolver = require('../graphql/resolvers/Mutation');
 const QueryResolver = require('../graphql/resolvers/Query');
+const UserResolver = require('../graphql/resolvers/User');
 
-const resolvers = _.merge(MutationResolver, QueryResolver);
+const resolvers = _.merge(MutationResolver, QueryResolver, UserResolver);
 
 const typesArray = loadFilesSync(path.join(__dirname, '../graphql/schemas'), { extensions: ['graphql'] });
 const typeDefs = mergeTypeDefs(typesArray);
@@ -27,9 +28,12 @@ module.exports = function (app) {
              return auth(req); 
         },
         formatError: (err) => {
+           
             if (!err.originalError) {
+                console.log(err);
                 return err;
             }
+            
             const data = err.originalError.data;
             const message = err.message || 'An error occured.!';
             const code = err.originalError.code || 500;

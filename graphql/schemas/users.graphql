@@ -1,15 +1,19 @@
+scalar Date
+ 
 type User {
     _id: ID!
     name: String!
     email: String!
     password: String
     age: Int
+    posts: [Post!]!
 }
 
 type Post {
     _id: ID!
     title: String!
     description: String!
+    date: Date!
     author: User!
 }
 
@@ -28,15 +32,16 @@ type AuthData {
 input PostInputData {
   title: String!
   description: String!
-  author: ID!
 }
 
 type Query {
      login(email: String!, password: String!): AuthData!
+     getMe: User!
 }
 
 type Mutation {
-     createUser(data: UserInputData): AuthData!
-     createPost(data: PostInputData): Post!
+     createUser(data: UserInputData!): AuthData!
+     createPost(data: PostInputData!): Post!
+     deletePost(id: ID!): Post!
 }
 

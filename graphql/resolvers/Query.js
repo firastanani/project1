@@ -31,6 +31,15 @@ module.exports = {
             const token = user.generateAuthToken();
 
             return {token: token , user: user};
+        },
+        getMe: function (parent, data , ctx, info) {
+
+            if (!ctx.isAuth) {
+                const errors = new Error("Authentication falild");
+                errors.code = 401;
+                throw errors;
+            }
+            return ctx.user;
         }
     } 
 }

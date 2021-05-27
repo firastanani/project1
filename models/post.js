@@ -14,6 +14,10 @@ const schemaPost = mongoose.Schema(
             required: true,
             trim: true,
         },
+        date: {
+            type: Date,
+            default: Date.now
+        },
         author: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
@@ -29,7 +33,6 @@ function validatePost(post) {
     const schema = {
         title: Joi.string().required().max(50),
         description: Joi.string().required(),
-        author: Joi.objectId().required(),
     }
     return Joi.object(schema).validate(post);
 }

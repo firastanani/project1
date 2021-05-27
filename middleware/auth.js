@@ -7,7 +7,7 @@ const auth = async ({ req }) => {
   try {
     const token = req.header("Authorization");
     const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
-
+    
     const user = await User.findOne({
       _id: decoded._id,
       "tokens": token,
@@ -21,7 +21,6 @@ const auth = async ({ req }) => {
     return {user , isAuth};
 
   } catch (e) {
-    console.log(e.message);
     return { isAuth }
   }
 
