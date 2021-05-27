@@ -1,4 +1,4 @@
-const { ApolloServer} = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 
 const path = require('path');
 const { loadFilesSync } = require('@graphql-tools/load-files');
@@ -10,11 +10,12 @@ const _ = require('lodash');
 const MutationResolver = require('../graphql/resolvers/Mutation');
 const QueryResolver = require('../graphql/resolvers/Query');
 
-
-const resolvers = _.merge(MutationResolver , QueryResolver);
+const resolvers = _.merge(MutationResolver, QueryResolver);
 
 const typesArray = loadFilesSync(path.join(__dirname, '../graphql/schemas'), { extensions: ['graphql'] });
 const typeDefs = mergeTypeDefs(typesArray);
+
+const auth = require("../middleware/auth");
 
 
 module.exports = function (app) {
@@ -22,7 +23,10 @@ module.exports = function (app) {
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        formatError: (err)=> {
+        context:  (req) => {
+             return auth(req); 
+        },
+        formatError: (err) => {
             if (!err.originalError) {
                 return err;
             }
@@ -32,7 +36,7 @@ module.exports = function (app) {
             return { message: message, status: code, data: data };
         }
     });
-  
+
     server.applyMiddleware({ app });
 
 }

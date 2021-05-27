@@ -1,10 +1,11 @@
 const jwt = require("jsonwebtoken");
-const User = require("../model/User.js");
+const {User} = require("../models/user");
 const config = require('config');
 
-const auth = async (req, res, next) => {
+const auth = async ({ req }) => {
+  let isAuth = false;
   try {
-    const token = req.header("Authorization").replace("firas ", "");
+    const token = req.header("Authorization");
     const decoded = jwt.verify(token, config.get('jwtPrivateKey'));
 
     const user = await User.findOne({
@@ -13,13 +14,16 @@ const auth = async (req, res, next) => {
     });
 
     if (!user) {
-      throw new Error();
+      return {isAuth};
     }
-    req.token = token;
-    req.user = user;
-    next();
+
+    isAuth = true;
+    return {user , isAuth};
+
   } catch (e) {
-    res.status(401).send({ error: "Please authenticate." });
+    console.log(e.message);
+    return { isAuth }
   }
+
 };
 module.exports = auth;

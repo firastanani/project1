@@ -103,3 +103,109 @@
 {"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
 {"message":"Listening on port 3000...","level":"info"}
 {"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"SyntaxError: await is only valid in async function","level":"error"}
+{"message":"C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:30\n            const user = await User.findOne({\n                         ^^^^^\n\nSyntaxError: await is only valid in async function\n    at wrapSafe (internal/modules/cjs/loader.js:979:16)\n    at Module._compile (internal/modules/cjs/loader.js:1027:27)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\index.js:8:1)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)","level":"error"}
+{"message":"Error: Cannot find module '../model/User.js'\nRequire stack:\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\index.js","level":"error"}
+{"message":"Error: Cannot find module '../model/User.js'\nRequire stack:\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\index.js\n    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:880:15)\n    at Function.Module._load (internal/modules/cjs/loader.js:725:27)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:2:14)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)","level":"error"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"SyntaxError: Unexpected token ','","level":"error"}
+{"message":"C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:31\n            auth(req),\n                     ^\n\nSyntaxError: Unexpected token ','\n    at wrapSafe (internal/modules/cjs/loader.js:979:16)\n    at Module._compile (internal/modules/cjs/loader.js:1027:27)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\index.js:8:1)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)","level":"error"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Error: Cannot find module '../model/User.js'\nRequire stack:\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\middleware\\auth.js\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\index.js","level":"error"}
+{"message":"Error: Cannot find module '../model/User.js'\nRequire stack:\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\middleware\\auth.js\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js\n- C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\index.js\n    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:880:15)\n    at Function.Module._load (internal/modules/cjs/loader.js:725:27)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\middleware\\auth.js:2:14)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:18:14)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)","level":"error"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"SyntaxError: Identifier 'user' has already been declared","level":"error"}
+{"message":"C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\middleware\\auth.js:17\n    const user = await User.findOne({\n          ^\n\nSyntaxError: Identifier 'user' has already been declared\n    at wrapSafe (internal/modules/cjs/loader.js:979:16)\n    at Module._compile (internal/modules/cjs/loader.js:1027:27)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:18:14)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\index.js:8:1)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)","level":"error"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"SyntaxError: Identifier 'Post' has already been declared","level":"error"}
+{"message":"C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\graphql\\resolvers\\Mutation.js:5\nconst { Post , validatePost, Post} = require('../../models/post');\n                             ^\n\nSyntaxError: Identifier 'Post' has already been declared\n    at wrapSafe (internal/modules/cjs/loader.js:979:16)\n    at Module._compile (internal/modules/cjs/loader.js:1027:27)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:10:26)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)","level":"error"}
+{"message":"SyntaxError: Identifier 'Post' has already been declared","level":"error"}
+{"message":"C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\graphql\\resolvers\\Mutation.js:5\nconst { Post , validatePost, Post} = require('../../models/post');\n                             ^\n\nSyntaxError: Identifier 'Post' has already been declared\n    at wrapSafe (internal/modules/cjs/loader.js:979:16)\n    at Module._compile (internal/modules/cjs/loader.js:1027:27)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Module.require (internal/modules/cjs/loader.js:952:19)\n    at require (internal/modules/cjs/helpers.js:88:18)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:10:26)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)","level":"error"}
+{"message":"Error: The type of Mutation.createPost(data:) must be Input Type but got: PostInputData.","level":"error"}
+{"message":"Error: The type of Mutation.createPost(data:) must be Input Type but got: PostInputData.\n    at assertValidSchema (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\node_modules\\graphql\\type\\validate.js:69:11)\n    at assertValidExecutionArguments (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\node_modules\\graphql\\execution\\execute.js:150:35)\n    at executeImpl (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\node_modules\\graphql\\execution\\execute.js:98:3)\n    at Object.execute (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\node_modules\\graphql\\execution\\execute.js:60:63)\n    at Object.generateSchemaHash (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\node_modules\\apollo-server-core\\dist\\utils\\schemaHash.js:15:32)\n    at ApolloServer.generateSchemaDerivedData (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\node_modules\\apollo-server-core\\dist\\ApolloServer.js:407:41)\n    at new ApolloServerBase (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\node_modules\\apollo-server-core\\dist\\ApolloServer.js:204:41)\n    at new ApolloServer (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\node_modules\\apollo-server-express\\dist\\ApolloServer.js:60:9)\n    at module.exports (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\startup\\graphql.js:23:20)\n    at Object.<anonymous> (C:\\Users\\LEGION\\Desktop\\Programming\\Node JS\\project\\index.js:6:29)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)\n    at internal/main/run_main_module.js:17:47","level":"error"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to MongoDB mongodb://localhost/Social_project...","level":"info"}

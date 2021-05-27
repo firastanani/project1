@@ -6,6 +6,13 @@ type User {
     age: Int
 }
 
+type Post {
+    _id: ID!
+    title: String!
+    description: String!
+    author: User!
+}
+
 input UserInputData {
     email: String!
     name: String!
@@ -18,11 +25,18 @@ type AuthData {
   user: User!
 }
 
+input PostInputData {
+  title: String!
+  description: String!
+  author: ID!
+}
+
 type Query {
      login(email: String!, password: String!): AuthData!
 }
 
 type Mutation {
-     createUser(userInput: UserInputData): AuthData!
+     createUser(data: UserInputData): AuthData!
+     createPost(data: PostInputData): Post!
 }
 

@@ -1,15 +1,20 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
 const validator = require("validator");
+Joi.objectId = require('joi-objectid')(Joi)
 
 const schemaPost = mongoose.Schema(
     {
+        title: {
+            type: String,
+            required: true,
+        },
         description: {
             type: String,
-            require: true,
+            required: true,
             trim: true,
         },
-        owner: {
+        author: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: "User",
@@ -20,12 +25,14 @@ const schemaPost = mongoose.Schema(
 
 const Post = mongoose.model("Post", schemaPost);
 
-function validateUser(user) {
+function validatePost(post) {
     const schema = {
+        title: Joi.string().required().max(50),
         description: Joi.string().required(),
-        owner: Joi.objectId().required(),
+        author: Joi.objectId().required(),
     }
-    return Joi.object(schema).validate(user);
+    return Joi.object(schema).validate(post);
 }
 
-module.exports = Post;
+exports.Post = Post;
+exports.validatePost = validatePost;
