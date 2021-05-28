@@ -18,7 +18,7 @@ const auth = async ({ req }) => {
     }
 
     isAuth = true;
-    return {user , isAuth};
+    return {user , isAuth , token};
 
   } catch (e) {
     return { isAuth }

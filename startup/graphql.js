@@ -10,8 +10,9 @@ const _ = require('lodash');
 const MutationResolver = require('../graphql/resolvers/Mutation');
 const QueryResolver = require('../graphql/resolvers/Query');
 const UserResolver = require('../graphql/resolvers/User');
+const PostResolve = require('../graphql/resolvers/Post');
 
-const resolvers = _.merge(MutationResolver, QueryResolver, UserResolver);
+const resolvers = _.merge(MutationResolver, QueryResolver, UserResolver , PostResolve);
 
 const typesArray = loadFilesSync(path.join(__dirname, '../graphql/schemas'), { extensions: ['graphql'] });
 const typeDefs = mergeTypeDefs(typesArray);
@@ -24,16 +25,16 @@ module.exports = function (app) {
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        context:  (req) => {
-             return auth(req); 
+        context: (req) => {
+            return auth(req);
         },
         formatError: (err) => {
-           
+
             if (!err.originalError) {
                 console.log(err);
                 return err;
             }
-            
+
             const data = err.originalError.data;
             const message = err.message || 'An error occured.!';
             const code = err.originalError.code || 500;
@@ -42,5 +43,4 @@ module.exports = function (app) {
     });
 
     server.applyMiddleware({ app });
-
 }

@@ -18,6 +18,10 @@ const schemaPost = mongoose.Schema(
             type: Date,
             default: Date.now
         },
+        published: {
+            type: Boolean,
+            default: true
+        },
         author: {
             type: mongoose.Schema.Types.ObjectId,
             required: true,

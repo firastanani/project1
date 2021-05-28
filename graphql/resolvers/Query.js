@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
+const { Post } = require('../../models/post');
 
 const { User } = require('../../models/user');
 
@@ -40,6 +41,11 @@ module.exports = {
                 throw errors;
             }
             return ctx.user;
+        },
+        posts: async function(parent , data , ctx , info){
+            const userId = ctx.user._id;
+            const posts = await Post.find({author: userId});
+            return posts;
         }
     } 
 }
