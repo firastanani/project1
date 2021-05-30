@@ -8,6 +8,8 @@ module.exports = {
     Query: {
         login: async function (parent, data , ctx, info) {
 
+            console.log(data);
+
             const { error } = validate(data);
             if (error) {
                 const errors = new Error("invalid input");
@@ -46,7 +48,11 @@ module.exports = {
             const userId = ctx.user._id;
             const posts = await Post.find({author: userId});
             return posts;
+        },
+        hello: function(parent , data , ctx , info){
+            return 'hello';
         }
+
     } 
 }
 

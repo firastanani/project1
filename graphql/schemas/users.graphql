@@ -22,10 +22,12 @@ type AuthData {
 type Query {
   login(email: String!, password: String!): AuthData!
   getMe: User!
+  hello: String!
 }
 
 type Mutation {
   logout: Boolean!
   logoutAll: Boolean!
   createUser(data: UserInputData!): AuthData!
+  test(data: String!): String!
 }

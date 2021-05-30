@@ -14,10 +14,6 @@ const schemaPost = mongoose.Schema(
             required: true,
             trim: true,
         },
-        date: {
-            type: Date,
-            default: Date.now
-        },
         published: {
             type: Boolean,
             default: true
@@ -28,7 +24,9 @@ const schemaPost = mongoose.Schema(
             ref: "User",
         },
     },
-    { timestamps: true }
+    { 
+        timestamps: true 
+    }
 );
 
 const Post = mongoose.model("Post", schemaPost);

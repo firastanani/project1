@@ -9,6 +9,7 @@ const e = require("express");
 module.exports = {
   Mutation: {
     createUser: async function (parent, { data }, ctx, info) {
+      console.log(data);
       const { error } = validateUser(data);
       if (error) {
         const errors = new Error("invalid input");
@@ -33,6 +34,7 @@ module.exports = {
       return { token: token, user: user };
     },
     createPost: async function (parent, { data }, ctx, info) {
+      console.log(data);
       if (!ctx.isAuth) {
         const errors = new Error("Authentication falild");
         errors.code = 401;
@@ -98,6 +100,7 @@ module.exports = {
         errors.code = 400;
         throw errors;
       }
+
       const post = await Post.findOne({
         _id: id,
         author: ctx.user._id,
@@ -148,5 +151,8 @@ module.exports = {
         return false;
       }
     },
+    test: function (parent , {data} , ctx , info) {
+      return data.toString();
+    }
   },
 };
