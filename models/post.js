@@ -14,6 +14,9 @@ const schemaPost = mongoose.Schema(
             required: true,
             trim: true,
         },
+        imageUrl: {
+            type: String
+        },
         published: {
             type: Boolean,
             default: true

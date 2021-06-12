@@ -1,9 +1,11 @@
 scalar Date
+scalar Upload
 
 type Post {
   _id: ID!
   title: String!
   description: String!
+  imageUrl: String
   published: Boolean
   createdAt: Date!
   updatedAt: Date!
@@ -21,13 +23,12 @@ input UpdatePostInput {
   published: Boolean
 }
 
-type Query {
-    posts: [Post!]!
-}
-
 type Mutation {
-  updatePost(id: ID!, data: UpdatePostInput!): Post!
-  createPost(data: PostInputData!): Post!
+  createPost(data: PostInputData! , image: Upload): Post!
+  updatePost(id: ID!, data: UpdatePostInput! , image: Upload): Post!
   deletePost(id: ID!): Post!
 }
 
+type Query {
+  getPosts: [Post!]!
+}

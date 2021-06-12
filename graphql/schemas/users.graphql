@@ -1,3 +1,5 @@
+scalar Upload
+
 type User {
   _id: ID!
   name: String!
@@ -22,12 +24,22 @@ type AuthData {
 type Query {
   login(email: String!, password: String!): AuthData!
   getMe: User!
-  hello: String!
+  hello: String
 }
+
+ type File {
+   success: String!
+   message: String!
+   mimetype: String
+   encoding: String
+   filename: String
+   location: String
+  }
 
 type Mutation {
   logout: Boolean!
   logoutAll: Boolean!
-  createUser(data: UserInputData!): AuthData!
+  createUser(data: UserInputData!): User!
+  singleUpload(file: Upload!): File!
   test(data: String!): String!
 }

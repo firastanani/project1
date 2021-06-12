@@ -5,7 +5,6 @@ const Joi = require("joi");
 const mongoose = require("mongoose");
 const validator = require('validator');
 
-
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -47,12 +46,17 @@ const userSchema = mongoose.Schema(
         }
       },
     },
+    status: {
+      type: String,
+      default: "pending"
+    }
+    ,
     tokens:{
       type: [String],
       required: true
     },
   },
-  { timestamps: true }
+  { timestamps: true , toObject: { virtuals: true } }
 );
 
 userSchema.methods.generateAuthToken = async function () {
@@ -64,10 +68,16 @@ userSchema.methods.generateAuthToken = async function () {
   return token;
 }
 
-userSchema.virtual("Posts", {
+userSchema.virtual("posts", {
   ref: "Post",
   localField: "_id",
-  foreignField: "owner",
+  foreignField: "author",
+});
+
+userSchema.virtual("stories", {
+  ref: "Story",
+  localField: "_id",
+  foreignField: "author",
 });
 
 //for login
@@ -113,5 +123,14 @@ function validateUser(user) {
   return Joi.object(schema).validate(user);
 }
 
+function validateLogin(userInput) {
+  const schema = {
+      email: Joi.string().min(5).max(255).required().email({ tlds: { allow: ['com', 'net'] } }),
+      password: Joi.string().min(5).max(255).required()
+  }
+  return Joi.object(schema).validate(userInput);
+}
+
 exports.User = User;
 exports.validateUser = validateUser;
+exports.validateLogin = validateLogin;

@@ -1,158 +1,366 @@
 const _ = require("lodash");
+const crypto = require('crypto');
+const config = require('config');
 
 const { User, validateUser } = require("../../models/user");
-
 const { Post, validatePost } = require("../../models/post");
-const Joi = require("joi");
-const e = require("express");
+const { Comment, validateComment } = require("../../models/comment");
+const { Code } = require('../../models/secretCode');
+const { Story } = require('../../models/story');
+
+const emailService = require('../../util/nodemailer');
+
+const { processUpload } = require('../../util/fileUpload');
+const { deleteFile } = require('../../util/fileDelete');
+
+const { combineResolvers } = require('graphql-resolvers');
+
+const checkAuth = require('../../middleware/checkAuth');
+
+const validate = require('../../middleware/validate');
 
 module.exports = {
   Mutation: {
-    createUser: async function (parent, { data }, ctx, info) {
-      console.log(data);
-      const { error } = validateUser(data);
-      if (error) {
-        const errors = new Error("invalid input");
-        errors.data = error.details[0].message;
-        errors.code = 400;
-        throw errors;
+    createUser: combineResolvers(
+      validate(validateUser),
+      async function (parent, { data }, ctx, info) {
+        console.log(data);
+
+        const existingUser = await User.findOne({ email: data.email });
+        if (existingUser) {
+          const errors = new Error("User already exist");
+          errors.code = 400;
+          throw errors;
+        }
+
+        let user = new User(_.pick(data, ["name", "email", "password"]));
+        user.status = "active";
+
+        user = await user.save();
+
+        // const baseUrl = ctx.req.protocol + "://" + ctx.req.get("host");
+
+        // const secretCode = crypto.randomBytes(12).toString('hex');
+
+        // const newCode = new Code({
+        //   code: secretCode,
+        //   email: user.email
+        // })
+
+        // await newCode.save();
+
+        // const message = {
+        //   to: user.email,
+        //   from: config.get('email'),
+        //   subject: 'Activate SayHey account',
+        //   text: `Please use the following link to activate your account: ${baseUrl}/verification/verify-account/${user._id}/${secretCode}`,
+        // }
+
+        // await emailService.sendMail(message);
+
+        return user;
+
+      }),
+    createPost: combineResolvers(
+      checkAuth,
+      validate(validatePost),
+      async function (parent, args, ctx, info) {
+        console.log(args);
+
+        let uploadFile;
+        if (args.image && args.image.file) {
+          uploadFile = await processUpload(args.image.file);
+          if (!uploadFile.success) {
+            const errors = new Error("Faild uploading file");
+            errors.code = 400;
+            throw errors;
+          }
+        }
+
+        let post = new Post({
+          title: args.data.title,
+          description: args.data.description,
+          imageUrl: uploadFile ? uploadFile.location : null,
+          author: ctx.req.user._id
+        });
+
+        post = await post.save();
+
+        return post;
       }
+    ),
+    updatePost: combineResolvers(
+      checkAuth,
+      validate(validatePost),
+      async function (parent, args, ctx, info) {
 
-      const existingUser = await User.findOne({ email: data.email });
-      if (existingUser) {
-        const errors = new Error("User already exist");
-        errors.code = 400;
-        throw errors;
+        const { id, data } = args;
+
+        let post = await Post.findById(id);
+
+        if (!post) {
+          const errors = new Error("Post not found");
+          errors.code = 404;
+          throw errors;
+        }
+
+        if (!post.author.equals(ctx.req.user._id)) {
+          const errors = new Error("can't update others post");
+          errors.code = 401;
+          throw errors;
+        }
+
+        let uploadFile;
+        if (args.image && args.image.file) {
+          uploadFile = await processUpload(args.image.file);
+          if (!uploadFile.success) {
+            const errors = new Error("Faild uploading file");
+            errors.code = 400;
+            throw errors;
+          } else {
+            if (post.imageUrl) deleteFile(post.imageUrl);
+            post.imageUrl = uploadFile.location;
+          }
+        } else {
+          if (post.imageUrl) deleteFile(post.imageUrl);
+          post.imageUrl = null;
+        }
+
+        post.title = data.title;
+        post.description = data.description;
+
+        if (typeof data.published === "boolean") {
+          post.published = data.published;
+        }
+
+        post = await post.save();
+
+        return post;
       }
+    ),
+    deletePost: combineResolvers(
+      checkAuth,
+      async function (parent, { id }, ctx, info) {
 
-      let user = new User(_.pick(data, ["name", "email", "password"]));
+        let post = await Post.findById(id);
 
-      user = await user.save();
+        if (!post) {
+          const errors = new Error("Post not found");
+          errors.code = 404;
+          throw errors;
+        }
 
-      const token = user.generateAuthToken();
+        if (!post.author.equals(ctx.req.user._id)) {
+          const errors = new Error("can't remove others posts");
+          errors.code = 401;
+          throw errors;
+        }
 
-      return { token: token, user: user };
-    },
-    createPost: async function (parent, { data }, ctx, info) {
-      console.log(data);
-      if (!ctx.isAuth) {
-        const errors = new Error("Authentication falild");
-        errors.code = 401;
-        throw errors;
+        if (post.imageUrl) deleteFile(post.imageUrl);
+
+        post = await post.remove();
+
+        return post;
+      }),
+    createComment: combineResolvers(
+      checkAuth,
+      validate(validateComment),
+      async function (parent, { data }, ctx, info) {
+
+        const pubsub = ctx.pubsub;
+
+        data.author = ctx.user._id;
+        const existingPost = await Post.findOne({ _id: data.post });
+        if (!existingPost) {
+          const errors = new Error("Post deleted !!");
+          errors.code = 400;
+          throw errors;
+        }
+
+        let comment = new Comment(data);
+        comment = await comment.save();
+
+        pubsub.publish(`comment ${data.post}`, {
+          comment: {
+            mutation: "Created",
+            data: {
+              text: comment.text,
+              post: comment.post,
+              author: ctx.user._id,
+              _id: comment._id,
+            },
+          },
+        });
+        return comment;
+      }),
+    deleteComment: combineResolvers(
+      checkAuth,
+      async function (parent, { id }, ctx, info) {
+
+        const pubsub = ctx.pubsub;
+
+        let comment = await Comment.findById(id);
+
+        if (!comment) {
+          const errors = new Error("Post not found");
+          errors.code = 404;
+          throw errors;
+        }
+
+        if (!comment.author.equals(ctx.user._id)) {
+          const errors = new Error("can't remove others comments");
+          errors.code = 401;
+          throw errors;
+        }
+
+        comment = await comment.remove();
+
+        comment.author = ctx.user;
+        pubsub.publish(`comment ${comment.post}`, {
+          comment: {
+            mutation: "Deleted",
+            data: {
+              text: comment.text,
+              post: comment.post,
+              author: ctx.user._id,
+              _id: comment._id,
+            },
+          },
+        });
+        return comment;
+      }),
+      updateComment: combineResolvers(
+        checkAuth,
+        async function (parent, args, ctx, info) {
+          const pubsub = ctx.pubsub;
+
+          const { id, data } = args;
+
+          const { error } = validateComment2(data);
+          if (error) {
+            const errors = new Error("invalid input");
+            errors.data = error.details[0].message;
+            errors.code = 400;
+            throw errors;
+          }
+          
+          const comment = await Comment.findOne({
+            _id: id,
+            author: ctx.user._id,
+          });
+    
+          if (!comment) {
+            const errors = new Error("Post not found");
+            errors.code = 404;
+            throw errors;
+          }
+    
+          comment.text = data.text;
+          pubsub.publish(`comment ${comment.post}`, {
+            comment: {
+              mutation: "Updated",
+              data: {
+                text: comment.text,
+                post: comment.post,
+                author: ctx.user._id,
+                _id: comment._id,
+              },
+            },
+          });
+          return comment;
+        }),
+    addStory: combineResolvers(
+      checkAuth,
+      async function (parent, args, ctx, info) {
+
+        let uploadFile = await processUpload(args.image.file);
+
+        if (!uploadFile.success) {
+          const errors = new Error("Faild uploading file");
+          errors.code = 400;
+          throw errors;
+        }
+
+        let story = new Story({
+          imageUrl: uploadFile.location,
+          author: ctx.req.user._id,
+          viewers: [],
+        })
+
+        story = await story.save();
+
+        return story;
       }
+    ),
+    storySeen: combineResolvers(
+      checkAuth,
+      async function (parent, args, ctx, info) {
 
-      const { error } = validatePost(data);
-      if (error) {
-        const errors = new Error("invalid input");
-        errors.data = error.details[0].message;
-        errors.code = 400;
-        throw errors;
-      }
+        const id = args.id;
 
-      data.author = ctx.user._id;
-      let post = new Post(data);
-      post = await post.save();
+        const user = ctx.req.user;
 
-      post.author = ctx.user;
+        let story = await Story.findById(id);
 
-      return post;
-    },
+        if (!story) {
+          const errors = new Error("story not found");
+          errors.code = 404;
+          throw errors;
+        }
 
-    deletePost: async function (parent, { id }, ctx, info) {
-      if (!ctx.isAuth) {
-        const errors = new Error("Authentication falild");
-        errors.code = 401;
-        throw errors;
-      }
+        const seen = story.viewers.includes(user._id);
 
-      let post = await Post.findById(id);
+        if (seen) return true;
 
-      if (!post) {
-        const errors = new Error("Post not found");
-        errors.code = 404;
-        throw errors;
-      }
+        story.viewers.push(user._id);
+        story = await story.save();
 
-      if (!post.author.equals(ctx.user._id)) {
-        const errors = new Error("can't remove others posts");
-        errors.code = 401;
-        throw errors;
-      }
-
-      post = await post.remove();
-
-      post.author = ctx.user;
-
-      return post;
-    },
-    updatePost: async function (parent, args, ctx, info) {
-      if (!ctx.isAuth) {
-        const errors = new Error("Authentication falild");
-        errors.code = 401;
-        throw errors;
-      }
-
-      const { id, data } = args;
-      const { error } = validatePost(data);
-      if (error) {
-        const errors = new Error("invalid input");
-        errors.data = error.details[0].message;
-        errors.code = 400;
-        throw errors;
-      }
-
-      const post = await Post.findOne({
-        _id: id,
-        author: ctx.user._id,
-      });
-
-      if (!post) {
-        const errors = new Error("Post not found");
-        errors.code = 404;
-        throw errors;
-      }
-
-      post.title = data.title;
-      post.description = data.description;
-
-      if (typeof data.published === "boolean") {
-        post.published = data.published;
-      }
-
-      return post;
-    },
-    logout: async function (parent, args, ctx, info) {
-      if (!ctx.isAuth) {
-        const errors = new Error("Authentication falild");
-        errors.code = 401;
-        throw errors;
-      }
-      ctx.user.tokens = ctx.user.tokens.filter((token) => {
-        return ctx.token !== token;
-      });
-      const result = await ctx.user.save();
-      if (result) {
         return true;
-      } else {
-        return false;
       }
-    },
-    logoutAll: async function (parent, args, ctx, info) {
-      if (!ctx.isAuth) {
-        const errors = new Error("Authentication falild");
-        errors.code = 401;
-        throw errors;
-      }
-      ctx.user.tokens = [];
-      const result = await ctx.user.save();
-      if (result) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-    test: function (parent , {data} , ctx , info) {
+    ),
+
+    logout: combineResolvers(
+      checkAuth,
+      async function (parent, args, ctx, info) {
+
+        ctx.req.user.tokens = ctx.req.user.tokens.filter((token) => {
+          return ctx.req.token !== token;
+        });
+
+        const result = await ctx.req.user.save();
+
+        return result ? true : false;
+      }),
+
+    logoutAll: combineResolvers(
+      checkAuth,
+      async function (parent, args, ctx, info) {
+        ctx.req.user.tokens = [];
+        const result = await ctx.req.user.save();
+        return result ? true : false;
+      }),
+
+    test: function (parent, { data }, ctx, info) {
       return data.toString();
+    },
+    singleUpload: async (parent, args) => {
+      console.log('upload file');
+      console.log(args);
+      try {
+        const result = await processUpload(args.file.file);
+        return result;
+      } catch (err) {
+        console.log(err.message);
+        return null;
+      }
     }
   },
 };
+
+
+function validateComment2(comment) {
+  const schema = {
+    text: Joi.required(),
+  }
+  return Joi.object(schema).validate(comment);
+}
