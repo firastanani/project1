@@ -14,10 +14,11 @@ const SubscriptionResolver = require('../graphql/resolvers/Subscription');
 const UserResolver = require('../graphql/resolvers/User');
 const PostResolver = require('../graphql/resolvers/Post');
 const StoryResolver = require('../graphql/resolvers/Story');
+const CommentResolver = require('../graphql/resolvers/Comment');
 
 const resolvers = _.merge(MutationResolver, QueryResolver
     , UserResolver , PostResolver , StoryResolver 
-    , SubscriptionResolver);
+    , SubscriptionResolver , CommentResolver);
 
 const typesArray = loadFilesSync(path.join(__dirname, '../graphql/schemas'), { extensions: ['graphql'] });
 const typeDefs = mergeTypeDefs(typesArray);

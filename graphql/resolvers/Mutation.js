@@ -4,7 +4,7 @@ const config = require('config');
 
 const { User, validateUser } = require("../../models/user");
 const { Post, validatePost } = require("../../models/post");
-const { Comment, validateComment } = require("../../models/comment");
+const { Comment, validateComment , validateComment2 } = require("../../models/comment");
 const { Code } = require('../../models/secretCode');
 const { Story } = require('../../models/story');
 
@@ -169,7 +169,7 @@ module.exports = {
 
         const pubsub = ctx.pubsub;
 
-        data.author = ctx.user._id;
+        data.author = ctx.req.user._id;
         const existingPost = await Post.findOne({ _id: data.post });
         if (!existingPost) {
           const errors = new Error("Post deleted !!");
@@ -183,14 +183,10 @@ module.exports = {
         pubsub.publish(`comment ${data.post}`, {
           comment: {
             mutation: "Created",
-            data: {
-              text: comment.text,
-              post: comment.post,
-              author: ctx.user._id,
-              _id: comment._id,
-            },
+            data: comment
           },
         });
+
         return comment;
       }),
     deleteComment: combineResolvers(
@@ -207,7 +203,7 @@ module.exports = {
           throw errors;
         }
 
-        if (!comment.author.equals(ctx.user._id)) {
+        if (!comment.author.equals(ctx.req.user._id)) {
           const errors = new Error("can't remove others comments");
           errors.code = 401;
           throw errors;
@@ -215,60 +211,50 @@ module.exports = {
 
         comment = await comment.remove();
 
-        comment.author = ctx.user;
+        comment.author = ctx.req.user;
         pubsub.publish(`comment ${comment.post}`, {
           comment: {
             mutation: "Deleted",
-            data: {
-              text: comment.text,
-              post: comment.post,
-              author: ctx.user._id,
-              _id: comment._id,
-            },
+            data: comment,
           },
         });
         return comment;
       }),
-      updateComment: combineResolvers(
-        checkAuth,
-        async function (parent, args, ctx, info) {
-          const pubsub = ctx.pubsub;
+    updateComment: combineResolvers(
+      checkAuth,
+      async function (parent, args, ctx, info) {
+        const pubsub = ctx.pubsub;
 
-          const { id, data } = args;
+        const { id, data } = args;
 
-          const { error } = validateComment2(data);
-          if (error) {
-            const errors = new Error("invalid input");
-            errors.data = error.details[0].message;
-            errors.code = 400;
-            throw errors;
-          }
-          
-          const comment = await Comment.findOne({
-            _id: id,
-            author: ctx.user._id,
-          });
-    
-          if (!comment) {
-            const errors = new Error("Post not found");
-            errors.code = 404;
-            throw errors;
-          }
-    
-          comment.text = data.text;
-          pubsub.publish(`comment ${comment.post}`, {
-            comment: {
-              mutation: "Updated",
-              data: {
-                text: comment.text,
-                post: comment.post,
-                author: ctx.user._id,
-                _id: comment._id,
-              },
-            },
-          });
-          return comment;
-        }),
+        const { error } = validateComment2(data);
+        if (error) {
+          const errors = new Error("invalid input");
+          errors.data = error.details[0].message;
+          errors.code = 400;
+          throw errors;
+        }
+
+        const comment = await Comment.findOne({
+          _id: id,
+          author: ctx.req.user._id,
+        });
+
+        if (!comment) {
+          const errors = new Error("Post not found");
+          errors.code = 404;
+          throw errors;
+        }
+
+        comment.text = data.text;
+        pubsub.publish(`comment ${comment.post}`, {
+          comment: {
+            mutation: "Updated",
+            data: comment,
+          },
+        });
+        return comment;
+      }),
     addStory: combineResolvers(
       checkAuth,
       async function (parent, args, ctx, info) {
@@ -356,11 +342,3 @@ module.exports = {
     }
   },
 };
-
-
-function validateComment2(comment) {
-  const schema = {
-    text: Joi.required(),
-  }
-  return Joi.object(schema).validate(comment);
-}
