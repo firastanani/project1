@@ -1,6 +1,0 @@
-{
-    "jwtPrivateKey": "1234",
-    "db": "mongodb://localhost/Social_project",
-    "email": "SayHey.Social@hotmail.com",
-    "password": "1firasandwaseem1"
-}
